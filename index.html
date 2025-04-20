@@ -95,7 +95,7 @@
             box-sizing: border-box;
         }
 
-        /* PARTICLE CONTAINERS */
+        /* PARTICLE CONTAINER - CRUCIAL FOR PARTICLES TO WORK */
         #particles-js {
             position: absolute;
             top: 0;
@@ -104,44 +104,6 @@
             height: 100%;
             z-index: 0;
             background-color: transparent;
-        }
-
-        /* ANIMATED DOTS BACKGROUND */
-        .purple-dots {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .dot {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background-color: rgba(138, 43, 226, 0.6);
-            border-radius: 50%;
-            filter: blur(1px);
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(20vw);
-                opacity: 0;
-            }
         }
 
         .content {
@@ -262,10 +224,7 @@
     </style>
 </head>
 <body>
-    <!-- Animated Purple Dots Background -->
-    <div class="purple-dots" id="purpleDots"></div>
-    
-    <!-- Particle Network Background -->
+    <!-- Particle Network Background - MUST COME FIRST -->
     <div id="particles-js"></div>
     
     <!-- Content Container -->
@@ -295,10 +254,10 @@
         <p>All content © <span id="year"></span> Zen Hub. Unauthorized copying prohibited.</p>
     </div>
 
-    <!-- Particle.js Library -->
+    <!-- Particle.js Library - MUST BE LOADED -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
-    <!-- Scripts -->
+    <!-- Particle Initialization - CRUCIAL FOR PARTICLES TO WORK -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Set copyright year
@@ -309,148 +268,49 @@
                 e.preventDefault();
             });
             
-            // Create animated purple dots
-            createDots();
-            
-            // Initialize particles.js network
+            // Initialize particles.js
             particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 40,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#8a2be2" },
+                    shape: { type: "circle" },
+                    opacity: { 
+                        value: 0.5,
+                        random: true,
+                        anim: { enable: true, speed: 1, opacity_min: 0.1 }
                     },
-                    "color": {
-                        "value": "#8a2be2"
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#8a2be2",
+                        opacity: 0.4,
+                        width: 1
                     },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.7,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.3,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 4,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 2,
-                            "size_min": 1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#9b4dff",
-                        "opacity": 0.5,
-                        "width": 1.5,
-                        "shadow": {
-                            "enable": true,
-                            "color": "#8a2be2",
-                            "blur": 5
-                        }
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 1.5,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "bounce",
-                        "bounce": true,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
                     }
                 },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "grab" },
+                        onclick: { enable: true, mode: "push" }
                     },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
+                    modes: {
+                        grab: { distance: 140, line_linked: { opacity: 1 } },
+                        push: { particles_nb: 4 }
                     }
                 },
-                "retina_detect": true
+                retina_detect: true
             });
         });
-
-        // Create floating purple dots
-        function createDots() {
-            const container = document.getElementById('purpleDots');
-            const dotCount = 50;
-            
-            for (let i = 0; i < dotCount; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                
-                // Random positioning
-                dot.style.left = Math.random() * 100 + 'vw';
-                dot.style.top = Math.random() * 100 + 'vh';
-                
-                // Random size variation
-                const size = 4 + Math.random() * 4;
-                dot.style.width = size + 'px';
-                dot.style.height = size + 'px';
-                
-                // Random opacity
-                dot.style.opacity = 0.3 + Math.random() * 0.4;
-                
-                // Random animation duration and delay
-                const duration = 10 + Math.random() * 20;
-                const delay = Math.random() * 15;
-                dot.style.animation = `float ${duration}s ${delay}s infinite linear`;
-                
-                container.appendChild(dot);
-            }
-        }
     </script>
 </body>
 </html>
