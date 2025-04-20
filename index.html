@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Our Discord Server</title>
     
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.jsdelivr.net; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
     <!-- Purple "Z" SVG Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20,20 L80,20 L20,80 L80,80' stroke='%238a2be2' stroke-width='15' fill='none'/></svg>">
 
     <style>
+        /* Disable Text Selection */
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
         /* NEON OUTLINE EFFECT */
         body::before {
             content: '';
@@ -39,7 +52,6 @@
             }
         }
 
-        /* NEON SUBTITLE STYLES */
         .neon-subtitle {
             color: white;
             font-size: 2rem;
@@ -69,7 +81,6 @@
             }
         }
 
-        /* MAIN STYLES */
         body {
             margin: 0;
             overflow: hidden;
@@ -84,15 +95,17 @@
             box-sizing: border-box;
         }
 
-        /* PARTICLE NETWORK BACKGROUND */
+        /* PARTICLE CONTAINER - CRUCIAL FOR PARTICLES TO WORK */
         #particles-js {
             position: absolute;
-            width: calc(100% - 8px);
-            height: calc(100% - 8px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
+            background-color: transparent;
         }
 
-        /* CONTENT CONTAINER */
         .content {
             display: flex;
             flex-direction: column;
@@ -104,7 +117,6 @@
             gap: 20px;
         }
 
-        /* BUTTON BASE STYLES */
         .btn {
             display: flex;
             align-items: center;
@@ -123,19 +135,16 @@
             z-index: 1;
         }
 
-        /* DISCORD BUTTON SPECIFIC */
         .discord-btn {
             background-color: #5865F2;
             box-shadow: 0 0 15px rgba(88, 101, 242, 0.7);
         }
 
-        /* GITHUB BUTTON SPECIFIC */
         .github-btn {
             background-color: #333;
             box-shadow: 0 0 15px rgba(51, 51, 51, 0.7);
         }
 
-        /* SHARED BUTTON HOVER EFFECTS */
         .btn:hover {
             transform: translateY(-3px);
         }
@@ -177,7 +186,6 @@
             pointer-events: none;
         }
 
-        /* ICON STYLES */
         .btn-icon {
             width: 24px;
             height: 24px;
@@ -188,7 +196,6 @@
             transform: rotate(10deg);
         }
 
-        /* ANIMATIONS */
         @keyframes shine {
             0% {
                 left: -50%;
@@ -217,7 +224,7 @@
     </style>
 </head>
 <body>
-    <!-- Particle Network Background -->
+    <!-- Particle Network Background - MUST COME FIRST -->
     <div id="particles-js"></div>
     
     <!-- Content Container -->
@@ -242,16 +249,30 @@
         </button>
     </div>
 
-    <!-- Particle.js Library -->
+    <!-- Legal Notice -->
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; text-align: center; color: #555; font-size: 0.8rem; z-index: 9998;">
+        <p>All content © <span id="year"></span> Zen Hub. Unauthorized copying prohibited.</p>
+    </div>
+
+    <!-- Particle.js Library - MUST BE LOADED -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
-    <!-- Particle Network Configuration -->
+    <!-- Particle Initialization - CRUCIAL FOR PARTICLES TO WORK -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Set copyright year
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Disable right-click
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+            
+            // Initialize enhanced purple loop network particles
             particlesJS('particles-js', {
                 "particles": {
                     "number": {
-                        "value": 80,
+                        "value": 60,
                         "density": {
                             "enable": true,
                             "value_area": 800
@@ -268,34 +289,50 @@
                         }
                     },
                     "opacity": {
-                        "value": 0.5,
+                        "value": 0.7,
                         "random": true,
                         "anim": {
                             "enable": true,
                             "speed": 1,
-                            "opacity_min": 0.1,
+                            "opacity_min": 0.3,
                             "sync": false
                         }
                     },
                     "size": {
-                        "value": 3,
-                        "random": true
+                        "value": 4,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 1,
+                            "sync": false
+                        }
                     },
                     "line_linked": {
                         "enable": true,
-                        "distance": 150,
-                        "color": "#8a2be2",
-                        "opacity": 0.4,
-                        "width": 1
+                        "distance": 130,
+                        "color": "#9b4dff",
+                        "opacity": 0.6,
+                        "width": 1.5,
+                        "shadow": {
+                            "enable": true,
+                            "color": "#8a2be2",
+                            "blur": 5
+                        }
                     },
                     "move": {
                         "enable": true,
-                        "speed": 2,
+                        "speed": 1.5,
                         "direction": "none",
                         "random": true,
                         "straight": false,
-                        "out_mode": "out",
-                        "bounce": false
+                        "out_mode": "bounce",
+                        "bounce": true,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
                     }
                 },
                 "interactivity": {
@@ -318,8 +355,22 @@
                                 "opacity": 1
                             }
                         },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
                         "push": {
                             "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
                         }
                     }
                 },
