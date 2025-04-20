@@ -9,14 +9,46 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20,20 L80,20 L20,80 L80,80' stroke='%238a2be2' stroke-width='15' fill='none'/></svg>">
 
     <style>
+        /* NEON OUTLINE EFFECT */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 4px solid transparent;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: neonPulse 3s infinite alternate;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.8),
+                        inset 0 0 10px rgba(138, 43, 226, 0.8);
+        }
+
+        @keyframes neonPulse {
+            0% {
+                border-color: #8a2be2;
+                box-shadow: 0 0 10px rgba(138, 43, 226, 0.8),
+                            inset 0 0 10px rgba(138, 43, 226, 0.8);
+            }
+            100% {
+                border-color: #e100ff;
+                box-shadow: 0 0 20px rgba(225, 0, 255, 0.9),
+                            inset 0 0 20px rgba(225, 0, 255, 0.9);
+            }
+        }
+
         /* NEON SUBTITLE STYLES */
         .neon-subtitle {
             color: white;
-            font-size: 1.8rem;
+            font-size: 2rem;
             text-align: center;
             margin-bottom: 30px;
             position: relative;
             z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             text-shadow: 0 0 5px #fff,
                          0 0 10px #fff,
                          0 0 20px #8a2be2,
@@ -37,30 +69,22 @@
             }
         }
 
-        .neon-subtitle::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            color: #8a2be2;
-            text-shadow: 0 0 10px #8a2be2,
-                         0 0 20px #8a2be2,
-                         0 0 30px #8a2be2,
-                         0 0 40px #8a2be2,
-                         0 0 70px #8a2be2;
-            filter: blur(2px);
+        /* MAIN CONTAINER STYLES */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            position: relative;
         }
 
-        /* Your existing body and particle styles remain unchanged */
+        /* ORIGINAL STYLES */
         body {
             margin: 0;
             overflow: hidden;
             font-family: 'Arial', sans-serif;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -70,30 +94,144 @@
             box-sizing: border-box;
         }
 
-        /* Rest of your existing CSS... */
+        #particles-js {
+            position: absolute;
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+            z-index: 0;
+        }
+
+        .discord-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background-color: #5865F2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.7);
+            z-index: 1;
+        }
+        
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+        
+        .discord-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .discord-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 45%,
+                rgba(255, 255, 255, 0.5) 48%,
+                rgba(255, 255, 255, 0.5) 52%,
+                rgba(255, 255, 255, 0) 55%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite linear;
+        }
+        
+        @keyframes shine {
+            0% {
+                left: -50%;
+                top: -50%;
+            }
+            100% {
+                left: 50%;
+                top: 50%;
+            }
+        }
+        
+        .discord-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid #8a2be2;
+            border-radius: 8px;
+            animation: pulse 2s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            70% {
+                transform: scale(1.05);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+        }
+        
+        .discord-logo {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .discord-btn:hover .discord-logo {
+            transform: rotate(10deg);
+        }
     </style>
 </head>
 <body>
     <!-- Particle Network Background -->
     <div id="particles-js"></div>
     
-    <!-- Neon Subtitle -->
-    <h2 class="neon-subtitle" data-text="WELCOME TO ZEN HUB">WELCOME TO ZEN HUB</h2>
-    
-    <!-- Discord Button -->
-    <button class="discord-btn" onclick="window.location.href='https://discord.gg/zen-hub-official-1189265387217490051'">
-        <svg class="discord-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="currentColor">
-            <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
-        </svg>
-        Join Our Discord Server
-    </button>
+    <!-- Content Container -->
+    <div class="container">
+        <!-- Neon Subtitle -->
+        <h2 class="neon-subtitle">Welcome to Zen Hub</h2>
+        
+        <!-- Discord Button -->
+        <button class="discord-btn" onclick="window.location.href='https://discord.gg/zen-hub-official-1189265387217490051'">
+            <svg class="discord-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="currentColor">
+                <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+            </svg>
+            Join Our Discord Server
+        </button>
+    </div>
 
     <!-- Particle.js Library -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <!-- Animation Configuration -->
     <script>
-        // Your existing particle.js configuration...
-    </script>
-</body>
-</html>
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": { "value": 60 },
+                    "color": { "value": "#8a2be2" },
+                    "shape": { "type": "circle" },
+                    "opacity": { 
+                        "value": 0.5,
+                        "random": true,
+                        "anim": { "enable": true, "speed": 1 }
+                    },
+                    "size": { "value": 
