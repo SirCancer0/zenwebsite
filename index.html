@@ -1,382 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Our Discord Server</title>
-    
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.jsdelivr.net; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    
-    <!-- Purple "Z" SVG Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20,20 L80,20 L20,80 L80,80' stroke='%238a2be2' stroke-width='15' fill='none'/></svg>">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Our Discord Server</title>
 
-    <style>
-        /* Disable Text Selection */
-        body {
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.jsdelivr.net; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
 
-        /* NEON OUTLINE EFFECT */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 4px solid transparent;
-            border-radius: 8px;
-            pointer-events: none;
-            z-index: 9999;
-            animation: neonPulse 3s infinite alternate;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.8),
-                        inset 0 0 10px rgba(138, 43, 226, 0.8);
-        }
+  <!-- Purple "Z" SVG Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20,20 L80,20 L20,80 L80,80' stroke='%238a2be2' stroke-width='15' fill='none'/></svg>">
 
-        @keyframes neonPulse {
-            0% {
-                border-color: #8a2be2;
-                box-shadow: 0 0 10px rgba(138, 43, 226, 0.8),
-                            inset 0 0 10px rgba(138, 43, 226, 0.8);
-            }
-            100% {
-                border-color: #e100ff;
-                box-shadow: 0 0 20px rgba(225, 0, 255, 0.9),
-                            inset 0 0 20px rgba(225, 0, 255, 0.9);
-            }
-        }
+  <style>
+    /* General Reset & Body Style */
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #0a0a0a;
+      position: relative;
+      padding: 4px;
+      box-sizing: border-box;
+      user-select: none;
+    }
 
-        .neon-subtitle {
-            color: white;
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 5px #fff,
-                         0 0 10px #fff,
-                         0 0 20px #8a2be2,
-                         0 0 30px #8a2be2;
-            animation: neonFlicker 1.5s infinite alternate;
-        }
+    /* NEON OUTLINE EFFECT */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 4px solid transparent;
+      border-radius: 8px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: neonPulse 3s infinite alternate;
+      box-shadow: 0 0 10px rgba(138, 43, 226, 0.8),
+                  inset 0 0 10px rgba(138, 43, 226, 0.8);
+    }
 
-        @keyframes neonFlicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                text-shadow: 0 0 5px #fff,
-                             0 0 10px #fff,
-                             0 0 20px #8a2be2,
-                             0 0 30px #8a2be2,
-                             0 0 40px #8a2be2;
-            }
-            20%, 24%, 55% {
-                text-shadow: none;
-            }
-        }
+    @keyframes neonPulse {
+      0% {
+        border-color: #8a2be2;
+        box-shadow: 0 0 10px rgba(138, 43, 226, 0.8),
+                    inset 0 0 10px rgba(138, 43, 226, 0.8);
+      }
+      100% {
+        border-color: #e100ff;
+        box-shadow: 0 0 20px rgba(225, 0, 255, 0.9),
+                    inset 0 0 20px rgba(225, 0, 255, 0.9);
+      }
+    }
 
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #0a0a0a;
-            position: relative;
-            padding: 4px;
-            box-sizing: border-box;
-        }
+    .neon-subtitle {
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 5px #fff,
+                   0 0 10px #fff,
+                   0 0 20px #8a2be2,
+                   0 0 30px #8a2be2;
+      animation: neonFlicker 1.5s infinite alternate;
+    }
 
-        /* PARTICLE CONTAINER - CRUCIAL FOR PARTICLES TO WORK */
-        #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background-color: transparent;
-        }
+    @keyframes neonFlicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 5px #fff,
+                     0 0 10px #fff,
+                     0 0 20px #8a2be2,
+                     0 0 30px #8a2be2,
+                     0 0 40px #8a2be2;
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
+    }
 
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            position: relative;
-            text-align: center;
-            gap: 20px;
-        }
+    #particles-js,
+    #loopNetworkCanvas,
+    #purpleDots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: transparent;
+    }
 
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 15px 25px;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            z-index: 1;
-        }
+    .purple-dots .dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background-color: rgba(138, 43, 226, 0.6);
+      border-radius: 50%;
+      filter: blur(1px);
+      animation: float 15s infinite linear;
+    }
 
-        .discord-btn {
-            background-color: #5865F2;
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.7);
-        }
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0; }
+      10%, 90% { opacity: 0.6; }
+      100% { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
+    }
 
-        .github-btn {
-            background-color: #333;
-            box-shadow: 0 0 15px rgba(51, 51, 51, 0.7);
-        }
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      position: relative;
+      text-align: center;
+      gap: 20px;
+    }
 
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-        
-        .btn:active {
-            transform: translateY(1px);
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0) 45%,
-                rgba(255, 255, 255, 0.5) 48%,
-                rgba(255, 255, 255, 0.5) 52%,
-                rgba(255, 255, 255, 0) 55%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            animation: shine 3s infinite linear;
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 2px solid #8a2be2;
-            border-radius: 8px;
-            animation: pulse 2s infinite;
-            pointer-events: none;
-        }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 25px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
 
-        .btn-icon {
-            width: 24px;
-            height: 24px;
-            transition: transform 0.3s ease;
-        }
-        
-        .btn:hover .btn-icon {
-            transform: rotate(10deg);
-        }
+    .discord-btn {
+      background-color: #5865F2;
+      box-shadow: 0 0 15px rgba(88, 101, 242, 0.7);
+    }
 
-        @keyframes shine {
-            0% {
-                left: -50%;
-                top: -50%;
-            }
-            100% {
-                left: 50%;
-                top: 50%;
-            }
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.7;
-            }
-            70% {
-                transform: scale(1.05);
-                opacity: 0.2;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0.7;
-            }
-        }
-    </style>
+    .github-btn {
+      background-color: #333;
+      box-shadow: 0 0 15px rgba(51, 51, 51, 0.7);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(to bottom right, transparent 45%, rgba(255,255,255,0.5) 50%, transparent 55%);
+      transform: rotate(30deg);
+      animation: shine 3s infinite linear;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border: 2px solid #8a2be2;
+      border-radius: 8px;
+      animation: pulse 2s infinite;
+      pointer-events: none;
+    }
+
+    .btn-icon {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover .btn-icon {
+      transform: rotate(10deg);
+    }
+
+    @keyframes shine {
+      0% { left: -50%; top: -50%; }
+      100% { left: 50%; top: 50%; }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      70% { transform: scale(1.05); opacity: 0.2; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+
+    /* Legal Footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #555;
+      font-size: 0.8rem;
+      z-index: 9998;
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Particle Network Background - MUST COME FIRST -->
-    <div id="particles-js"></div>
-    
-    <!-- Content Container -->
-    <div class="content">
-        <!-- Neon Subtitle -->
-        <h2 class="neon-subtitle">Welcome to Zen Hub</h2>
-        
-        <!-- Discord Button -->
-        <button class="btn discord-btn" onclick="window.location.href='https://discord.gg/zen-hub-official-1189265387217490051'">
-            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="currentColor">
-                <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
-            </svg>
-            Join Our Discord Server
-        </button>
-        
-        <!-- GitHub Button -->
-        <button class="btn github-btn" onclick="window.location.href='https://raw.githubusercontent.com/SirCancer0/ZenWebsiteSuite/refs/heads/main/ZenHub'">
-            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            Click Here To Get Our Script
-        </button>
-    </div>
+  <canvas id="loopNetworkCanvas"></canvas>
+  <div id="particles-js"></div>
+  <div class="purple-dots" id="purpleDots"></div>
 
-    <!-- Legal Notice -->
-    <div style="position: fixed; bottom: 0; left: 0; right: 0; text-align: center; color: #555; font-size: 0.8rem; z-index: 9998;">
-        <p>All content © <span id="year"></span> Zen Hub. Unauthorized copying prohibited.</p>
-    </div>
-
-    <!-- Particle.js Library - MUST BE LOADED -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <div class="content">
+    <h2 class="neon-subtitle">Welcome to Zen Hub</h2>
     
-    <!-- Particle Initialization - CRUCIAL FOR PARTICLES TO WORK -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set copyright year
-            document.getElementById('year').textContent = new Date().getFullYear();
-            
-            // Disable right-click
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-            });
-            
-            // Initialize enhanced purple loop network particles
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 60,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#8a2be2"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.7,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.3,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 4,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 2,
-                            "size_min": 1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 130,
-                        "color": "#9b4dff",
-                        "opacity": 0.6,
-                        "width": 1.5,
-                        "shadow": {
-                            "enable": true,
-                            "color": "#8a2be2",
-                            "blur": 5
-                        }
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 1.5,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "bounce",
-                        "bounce": true,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
-        });
-    </script>
-</body>
-</html>
+    <button class="btn discord-btn" onclick="window.location.href='https://discord.gg/zen-hub-official-1189265387217490051'">
+      <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="currentColor">
+        <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6
