@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Synapse Hub - ScriptHub</title>
-    <link rel="icon" href="https://synapse.to/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://synapse.to/images/favicon.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -20,19 +20,14 @@
             overflow-x: hidden;
         }
         
-        body::before {
-            content: "";
+        #network-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px);
-            background-size: 20px 20px;
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.15;
         }
         
         header {
@@ -207,6 +202,8 @@
     </style>
 </head>
 <body>
+    <canvas id="network-canvas"></canvas>
+    
     <header>
         <div class="container">
             <div class="logo">
@@ -331,6 +328,163 @@
                 button.addEventListener('mouseleave', () => {
                     button.style.transform = 'translateY(0)';
                 });
+            });
+            
+            // Enhanced Network energy background
+            const canvas = document.getElementById('network-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas to full window size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Nodes for the network
+            const nodes = [];
+            const connections = [];
+            const numNodes = 40;
+            
+            // Create nodes
+            for (let i = 0; i < numNodes; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: Math.random() * 0.5 - 0.25,
+                    vy: Math.random() * 0.5 - 0.25,
+                    radius: 2 + Math.random() * 3,
+                    connections: [],
+                    hue: Math.random() * 60 + 200 // Blue-cyan hue range
+                });
+            }
+            
+            // Create connections between nearby nodes
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 250) {
+                        connections.push({
+                            node1: nodes[i],
+                            node2: nodes[j],
+                            distance: distance,
+                            active: false,
+                            pulse: 0,
+                            speed: 0.01 + Math.random() * 0.02,
+                            hue: (nodes[i].hue + nodes[j].hue) / 2 // Average hue of connected nodes
+                        });
+                        nodes[i].connections.push(connections[connections.length - 1]);
+                        nodes[j].connections.push(connections[connections.length - 1]);
+                    }
+                }
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Update nodes
+                for (let i = 0; i < nodes.length; i++) {
+                    const node = nodes[i];
+                    
+                    // Move node
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    
+                    // Bounce off walls
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                    
+                    // Draw node with glow effect
+                    const gradient = ctx.createRadialGradient(
+                        node.x, node.y, 0,
+                        node.x, node.y, node.radius * 2
+                    );
+                    gradient.addColorStop(0, `hsla(${node.hue}, 80%, 70%, 0.8)`);
+                    gradient.addColorStop(1, `hsla(${node.hue}, 80%, 50%, 0)`);
+                    
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                }
+                
+                // Update and draw connections
+                for (let i = 0; i < connections.length; i++) {
+                    const conn = connections[i];
+                    
+                    // Calculate current distance
+                    const dx = conn.node1.x - conn.node2.x;
+                    const dy = conn.node1.y - conn.node2.y;
+                    const currentDistance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Randomly activate connections
+                    if (Math.random() < 0.003) {
+                        conn.active = true;
+                        conn.pulse = 0;
+                    }
+                    
+                    // Update active pulses
+                    if (conn.active) {
+                        conn.pulse += conn.speed;
+                        if (conn.pulse >= 1) {
+                            conn.active = false;
+                        }
+                    }
+                    
+                    // Draw connection line
+                    ctx.beginPath();
+                    ctx.moveTo(conn.node1.x, conn.node1.y);
+                    ctx.lineTo(conn.node2.x, conn.node2.y);
+                    
+                    if (conn.active) {
+                        // Pulsing energy effect
+                        const alpha = 0.7 * (1 - conn.pulse);
+                        const lineWidth = 1 + 3 * conn.pulse;
+                        ctx.strokeStyle = `hsla(${conn.hue}, 80%, 70%, ${alpha})`;
+                        ctx.lineWidth = lineWidth;
+                        
+                        // Add glow effect
+                        ctx.shadowBlur = 15 * conn.pulse;
+                        ctx.shadowColor = `hsla(${conn.hue}, 80%, 70%, 0.8)`;
+                    } else {
+                        // Normal connection
+                        ctx.strokeStyle = 'hsla(210, 50%, 50%, 0.1)';
+                        ctx.lineWidth = 0.7;
+                        ctx.shadowBlur = 0;
+                    }
+                    
+                    ctx.stroke();
+                    
+                    // Draw energy pulse along the connection
+                    if (conn.active) {
+                        const pulseX = conn.node1.x + (conn.node2.x - conn.node1.x) * conn.pulse;
+                        const pulseY = conn.node1.y + (conn.node2.y - conn.node1.y) * conn.pulse;
+                        
+                        const pulseGradient = ctx.createRadialGradient(
+                            pulseX, pulseY, 0,
+                            pulseX, pulseY, 10 * (1 - conn.pulse)
+                        );
+                        pulseGradient.addColorStop(0, `hsla(${conn.hue}, 100%, 80%, 0.8)`);
+                        pulseGradient.addColorStop(1, `hsla(${conn.hue}, 100%, 60%, 0)`);
+                        
+                        ctx.beginPath();
+                        ctx.arc(pulseX, pulseY, 8 * (1 - conn.pulse), 0, Math.PI * 2);
+                        ctx.fillStyle = pulseGradient;
+                        ctx.fill();
+                    }
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Start animation
+            animate();
+            
+            // Resize handler
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
             });
         });
     </script>
